@@ -203,7 +203,7 @@ public class SinkEventAttributeSet implements SinkEventAttributes, Cloneable {
 
     /** {@inheritDoc} */
     public boolean isEqual(AttributeSet attr) {
-        return ((getAttributeCount() == attr.getAttributeCount()) && containsAttributes(attr));
+        return (getAttributeCount() == attr.getAttributeCount()) && containsAttributes(attr);
     }
 
     /**
@@ -212,7 +212,7 @@ public class SinkEventAttributeSet implements SinkEventAttributes, Cloneable {
      * @return a {@link javax.swing.text.AttributeSet} object.
      */
     public AttributeSet copyAttributes() {
-        return ((AttributeSet) clone());
+        return (AttributeSet) clone();
     }
 
     /**
@@ -348,7 +348,7 @@ public class SinkEventAttributeSet implements SinkEventAttributes, Cloneable {
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        final int parentHash = (resolveParent == null ? 0 : resolveParent.hashCode());
+        final int parentHash = resolveParent == null ? 0 : resolveParent.hashCode();
 
         return attribs.hashCode() + parentHash;
     }

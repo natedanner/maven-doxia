@@ -230,7 +230,7 @@ public abstract class AbstractParserTest extends AbstractModuleTest {
             isInlineCode = true;
             SinkEventAttributes attrs = new SinkEventAttributeSet();
             attrs.addAttributes(SinkEventAttributeSet.Semantics.CODE);
-            if (outputExtension().equals("md")) {
+            if ("md".equals(outputExtension())) {
                 attrs.addAttribute(SinkEventAttributes.CLASS, "nohighlight nocode");
             }
             assertSinkAttributesEqual(it.next(), "inline", attrs);

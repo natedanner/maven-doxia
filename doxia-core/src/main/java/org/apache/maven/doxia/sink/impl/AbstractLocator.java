@@ -25,7 +25,7 @@ import org.apache.maven.doxia.sink.Locator;
  */
 public abstract class AbstractLocator implements Locator {
 
-    private String reference;
+    private final String reference;
 
     protected AbstractLocator(String reference) {
         this.reference = reference;

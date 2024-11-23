@@ -51,7 +51,7 @@ import org.apache.maven.doxia.sink.impl.SinkWrapperFactoryComparator;
  */
 public abstract class AbstractParser implements Parser {
     /** Indicates that a second parsing is required. */
-    private boolean secondParsing = false;
+    private boolean secondParsing;
 
     @Inject
     private MacroManager macroManager;
@@ -66,7 +66,7 @@ public abstract class AbstractParser implements Parser {
      */
     private boolean emitComments = true;
 
-    private boolean emitAnchors = false;
+    private boolean emitAnchors;
 
     private static final String DOXIA_VERSION;
 

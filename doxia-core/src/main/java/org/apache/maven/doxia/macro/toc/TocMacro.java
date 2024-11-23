@@ -118,7 +118,7 @@ public class TocMacro extends AbstractMacro {
 
     void writeTocForIndexEntry(Sink sink, SinkEventAttributes listAttributes, IndexEntry rootEntry) {
         IndexEntry index = rootEntry;
-        if (index.getChildEntries().size() > 0) {
+        if (!index.getChildEntries().isEmpty()) {
             sink.list(listAttributes);
 
             int i = 1;
@@ -151,7 +151,7 @@ public class TocMacro extends AbstractMacro {
         }
 
         if (toDepth > n) {
-            if (sectionIndex.getChildEntries().size() > 0) {
+            if (!sectionIndex.getChildEntries().isEmpty()) {
                 if (fromDepth <= n && isRelevantIndex) {
                     sink.list();
                 }

@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RandomAccessSinkTest {
-    private SinkFactory factory = new AbstractXmlSinkFactory() {
+    private final SinkFactory factory = new AbstractXmlSinkFactory() {
         protected Sink createSink(Writer writer, String encoding, String languageId) {
             return new TextSink(writer);
         }

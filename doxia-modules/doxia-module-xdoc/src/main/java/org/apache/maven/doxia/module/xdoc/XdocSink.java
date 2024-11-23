@@ -269,7 +269,7 @@ public class XdocSink extends Xhtml5BaseSink implements XdocMarkup {
      * @see XdocMarkup#SECTION_TAG
      * @see XdocMarkup#SUBSECTION_TAG
      */
-    protected void onSection_(int depth) {
+    protected void onSection(int depth) {
         if (depth == SECTION_LEVEL_1) {
             writeEndTag(SECTION_TAG);
         } else if (depth == SECTION_LEVEL_2) {
@@ -309,7 +309,7 @@ public class XdocSink extends Xhtml5BaseSink implements XdocMarkup {
      * @see #H5
      * @see #H6
      */
-    protected void onSectionTitle_(int depth) {
+    protected void onSectionTitle(int depth) {
         if (depth == SECTION_LEVEL_1 || depth == SECTION_LEVEL_2) {
             write(String.valueOf(QUOTE) + GREATER_THAN);
         } else if (depth == SECTION_LEVEL_3) {

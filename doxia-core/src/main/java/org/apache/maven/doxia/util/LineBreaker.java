@@ -42,7 +42,7 @@ public class LineBreaker {
     private int maxLineLength;
 
     /** The current line length. */
-    private int lineLength = 0;
+    private int lineLength;
 
     /** The string buffer to store the current text. */
     private StringBuilder word = new StringBuilder(1024);
@@ -118,6 +118,7 @@ public class LineBreaker {
                         if (i + 1 < length && text.charAt(i + 1) == '\n') {
                             break;
                         }
+                        break;
 
                     case '\n':
                         writeWord();

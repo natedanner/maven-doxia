@@ -64,7 +64,7 @@ public class SnippetMacro extends AbstractMacro {
     /**
      * Debug.
      */
-    private boolean debug = false;
+    private boolean debug;
 
     /**
      * in case of Exception during snippet download error will ignored and empty content returned.

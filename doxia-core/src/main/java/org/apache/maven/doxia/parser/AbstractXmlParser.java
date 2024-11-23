@@ -86,7 +86,7 @@ public abstract class AbstractXmlParser extends AbstractParser implements XmlMar
 
     private Map<String, String> entities;
 
-    private boolean validate = false;
+    private boolean validate;
 
     /**
      * If set the parser will be loaded with all single characters

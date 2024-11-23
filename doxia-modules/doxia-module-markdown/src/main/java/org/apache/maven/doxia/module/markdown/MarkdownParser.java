@@ -241,7 +241,7 @@ public class MarkdownParser extends AbstractTextParser implements TextMarkup {
             html.append("</title>");
             return true;
         } else {
-            if (key.equalsIgnoreCase("author") && values.size() > 1) {
+            if ("author".equalsIgnoreCase(key) && values.size() > 1) {
                 // for multiple authors emit multiple meta tags
                 for (String value : values) {
                     writeHtmlMetadata(html, key, Collections.singletonList(value));
@@ -249,7 +249,7 @@ public class MarkdownParser extends AbstractTextParser implements TextMarkup {
             } else {
                 // every other multi-value should just be concatenated and emitted in a single meta tag
                 final String separator;
-                if (key.equalsIgnoreCase("keywords")) {
+                if ("keywords".equalsIgnoreCase(key)) {
                     separator = ",";
                 } else {
                     separator = EOL;

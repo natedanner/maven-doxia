@@ -53,7 +53,7 @@ public class ByLineReaderSource implements ByLineSource {
      * <code>true</code> if ungetLine() was called and no getNextLine() was
      * called
      */
-    private boolean ungetted = false;
+    private boolean ungetted;
 
     private String name;
 

@@ -113,7 +113,7 @@ public class Xhtml5BaseParser extends AbstractXmlParser implements HtmlMarkup {
     private boolean isAnchor;
 
     /** Used for nested lists. */
-    private int orderedListDepth = 0;
+    private int orderedListDepth;
 
     /** Counts section nesting level of the sections manually set in the HTML document */
     private int sectionLevel;
@@ -127,10 +127,10 @@ public class Xhtml5BaseParser extends AbstractXmlParser implements HtmlMarkup {
     private boolean inVerbatim;
 
     /** Used to keep track of closing tags for content events */
-    private Stack<String> divStack = new Stack<>();
+    private final Stack<String> divStack = new Stack<>();
 
     /** Used to wrap the definedTerm with its definition, even when one is omitted */
-    boolean hasDefinitionListItem = false;
+    boolean hasDefinitionListItem;
 
     private LinkedList<String> capturedSinkEventNames;
 

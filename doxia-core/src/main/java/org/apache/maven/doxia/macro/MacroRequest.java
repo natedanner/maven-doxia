@@ -38,7 +38,7 @@ public class MacroRequest {
     private File basedir;
 
     /** A map of parameters. */
-    private Map<String, Object> parameters;
+    private final Map<String, Object> parameters;
 
     /**
      * <p>Constructor for MacroRequest.</p>

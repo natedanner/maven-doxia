@@ -564,7 +564,7 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
      * @return the character, or '\0' if i &gt; length.
      */
     protected static char charAt(String string, int length, int i) {
-        return (i < length) ? string.charAt(i) : '\0';
+        return i < length ? string.charAt(i) : '\0';
     }
 
     /**
@@ -600,7 +600,8 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
     protected static String replaceAll(String string, String oldSub, String newSub) {
         StringBuilder replaced = new StringBuilder();
         int oldSubLength = oldSub.length();
-        int begin, end;
+        int begin;
+        int end;
 
         begin = 0;
         while ((end = string.indexOf(oldSub, begin)) >= 0) {
@@ -818,6 +819,7 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
                     if (blockIndent < listIndent) {
                         break loop;
                     }
+                    break;
                     /*FALLTHROUGH*/
                 case VERBATIM:
                 case MACRO:
@@ -864,6 +866,7 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
                     if (blockIndent >= listIndent) {
                         nextBlock();
                     }
+                    break;
                     /*FALLTHROUGH*/
                 default:
                     // A block which ends the list.
@@ -901,6 +904,7 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
                     if (blockIndent < listIndent) {
                         break loop;
                     }
+                    break;
                     /*FALLTHROUGH*/
                 case VERBATIM:
                 case FIGURE:
@@ -946,6 +950,7 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
                     if (blockIndent >= listIndent) {
                         nextBlock();
                     }
+                    break;
                     /*FALLTHROUGH*/
                 default:
                     // A block which ends the list.
@@ -983,6 +988,7 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
                     if (blockIndent < listIndent) {
                         break loop;
                     }
+                    break;
                     /*FALLTHROUGH*/
                 case VERBATIM:
                 case FIGURE:
@@ -1029,6 +1035,7 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
                     if (blockIndent >= listIndent) {
                         nextBlock();
                     }
+                    break;
                     /*FALLTHROUGH*/
                 default:
                     // A block which ends the list.
@@ -1058,7 +1065,9 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
      */
     private void nextBlock(boolean firstBlock) throws AptParseException {
         // Skip open lines.
-        int length, indent, i;
+        int length;
+        int indent;
+        int i;
 
         skipLoop:
         for (; ; ) {
@@ -1221,7 +1230,7 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
      * @return boolean
      */
     private static boolean isOctalChar(char c) {
-        return (c >= '0' && c <= '7');
+        return c >= '0' && c <= '7';
     }
 
     /**
@@ -1231,7 +1240,7 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
      * @return boolean
      */
     private static boolean isHexChar(char c) {
-        return ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F'));
+        return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F');
     }
 
     /**
@@ -1602,6 +1611,7 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
                             if (title) {
                                 AptParser.this.sink.title_();
                             }
+                            break;
                         case 1:
                             if (author) {
                                 AptParser.this.sink.author_();
@@ -1655,6 +1665,7 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
                     if (title) {
                         AptParser.this.sink.title_();
                     }
+                    break;
                 case 1:
                     if (author) {
                         AptParser.this.sink.author_();
@@ -1879,7 +1890,7 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
 
             StringBuilder buffer = new StringBuilder();
             char firstChar = firstLine.charAt(0);
-            source = (firstChar == PLUS);
+            source = firstChar == PLUS;
 
             while (AptParser.this.line != null) {
                 String l = AptParser.this.line;
@@ -1895,7 +1906,8 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
 
                 // Expand tabs ---
 
-                int prevColumn, column;
+                int prevColumn;
+                int column;
 
                 column = 0;
 
@@ -2035,7 +2047,7 @@ public class AptParser extends AbstractTextParser implements AptMarkup {
                 } else {
                     if (init == 1) {
                         init = 0;
-                        grid = (AptParser.charAt(line, lineLength, 0) == PIPE);
+                        grid = AptParser.charAt(line, lineLength, 0) == PIPE;
                         AptParser.this.sink.tableRows(justification, grid);
                     }
 

@@ -127,7 +127,7 @@ public class FmlParser extends AbstractXmlParser implements FmlMarkup {
             String toplink = parser.getAttributeValue(null, "toplink");
 
             if (toplink != null) {
-                if (toplink.equalsIgnoreCase("true")) {
+                if ("true".equalsIgnoreCase(toplink)) {
                     faqs.setToplink(true);
                 } else {
                     faqs.setToplink(false);

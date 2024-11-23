@@ -322,13 +322,13 @@ public class Xhtml5BaseSink extends AbstractXmlSink implements HtmlMarkup {
     /** {@inheritDoc} */
     @Override
     public void sectionTitle_(int level) {
-        onSectionTitle_(level);
+        onSectionTitle(level);
     }
 
     /** {@inheritDoc} */
     @Override
     public void section_(int level) {
-        onSection_(level);
+        onSection(level);
     }
 
     /**
@@ -352,7 +352,7 @@ public class Xhtml5BaseSink extends AbstractXmlSink implements HtmlMarkup {
      * @param depth The level of the section.
      * @see #SECTION
      */
-    protected void onSection_(int depth) {
+    protected void onSection(int depth) {
         if (depth >= SECTION_LEVEL_1 && depth <= SECTION_LEVEL_6) {
             writeEndTag(HtmlMarkup.SECTION);
         }
@@ -399,7 +399,7 @@ public class Xhtml5BaseSink extends AbstractXmlSink implements HtmlMarkup {
      * @see #H5
      * @see #H6
      */
-    protected void onSectionTitle_(int depth) {
+    protected void onSectionTitle(int depth) {
         if (depth == SECTION_LEVEL_1) {
             writeEndTag(HtmlMarkup.H1);
         } else if (depth == SECTION_LEVEL_2) {
@@ -690,10 +690,10 @@ public class Xhtml5BaseSink extends AbstractXmlSink implements HtmlMarkup {
     public void figureGraphics(String src, SinkEventAttributes attributes) {
         MutableAttributeSet filtered = SinkUtils.filterAttributes(attributes, SinkUtils.SINK_IMG_ATTRIBUTES);
         if (filtered != null) {
-            filtered.removeAttribute(SinkEventAttributes.SRC.toString());
+            filtered.removeAttribute(SinkEventAttributes.SRC);
         }
 
-        int count = (attributes == null ? 1 : attributes.getAttributeCount() + 1);
+        int count = attributes == null ? 1 : attributes.getAttributeCount() + 1;
 
         MutableAttributeSet atts = new SinkEventAttributeSet(count);
 
@@ -978,7 +978,7 @@ public class Xhtml5BaseSink extends AbstractXmlSink implements HtmlMarkup {
         MutableAttributeSet att = new SinkEventAttributeSet();
 
         String tableClass = "bodyTable" + (grid ? " bodyTableBorder" : "");
-        if (this.tableAttributes.isDefined(SinkEventAttributes.CLASS.toString())) {
+        if (this.tableAttributes.isDefined(SinkEventAttributes.CLASS)) {
             tableClass += " "
                     + this.tableAttributes
                             .getAttribute(SinkEventAttributes.CLASS)
@@ -1026,8 +1026,8 @@ public class Xhtml5BaseSink extends AbstractXmlSink implements HtmlMarkup {
 
         String rowClass = evenTableRow ? "a" : "b";
         boolean hidden = false;
-        if (attrs.isDefined(SinkEventAttributes.CLASS.toString())) {
-            String givenRowClass = (String) attrs.getAttribute(SinkEventAttributes.CLASS.toString());
+        if (attrs.isDefined(SinkEventAttributes.CLASS)) {
+            String givenRowClass = (String) attrs.getAttribute(SinkEventAttributes.CLASS);
             if (HIDDEN_CLASS_PATTERN.matcher(givenRowClass).matches()) {
                 hidden = true;
             }
@@ -1076,7 +1076,7 @@ public class Xhtml5BaseSink extends AbstractXmlSink implements HtmlMarkup {
      * @see javax.swing.text.html.HTML.Tag#TD
      */
     private void tableCell(boolean headerRow, MutableAttributeSet attributes) {
-        Tag t = (headerRow ? HtmlMarkup.TH : HtmlMarkup.TD);
+        Tag t = headerRow ? HtmlMarkup.TH : HtmlMarkup.TD;
 
         if (!headerRow
                 && cellCountStack != null
@@ -1115,13 +1115,13 @@ public class Xhtml5BaseSink extends AbstractXmlSink implements HtmlMarkup {
     /** {@inheritDoc} */
     @Override
     public void tableCell_() {
-        tableCell_(false);
+        tableCell(false);
     }
 
     /** {@inheritDoc} */
     @Override
     public void tableHeaderCell_() {
-        tableCell_(true);
+        tableCell(true);
     }
 
     /**
@@ -1131,8 +1131,8 @@ public class Xhtml5BaseSink extends AbstractXmlSink implements HtmlMarkup {
      * @see javax.swing.text.html.HTML.Tag#TH
      * @see javax.swing.text.html.HTML.Tag#TD
      */
-    private void tableCell_(boolean headerRow) {
-        Tag t = (headerRow ? HtmlMarkup.TH : HtmlMarkup.TD);
+    private void tableCell(boolean headerRow) {
+        Tag t = headerRow ? HtmlMarkup.TH : HtmlMarkup.TD;
 
         writeEndTag(t);
 
@@ -1237,8 +1237,8 @@ public class Xhtml5BaseSink extends AbstractXmlSink implements HtmlMarkup {
 
         if (DoxiaUtils.isExternalLink(name)) {
             String linkClass = "externalLink";
-            if (atts.isDefined(SinkEventAttributes.CLASS.toString())) {
-                String givenLinkClass = (String) atts.getAttribute(SinkEventAttributes.CLASS.toString());
+            if (atts.isDefined(SinkEventAttributes.CLASS)) {
+                String givenLinkClass = (String) atts.getAttribute(SinkEventAttributes.CLASS);
                 linkClass += " " + givenLinkClass;
             }
 

@@ -56,7 +56,7 @@ public class MarkdownSink extends AbstractTextSink implements MarkdownMarkup {
      * A buffer that holds the current text when the current context requires buffering.
      * The content of this buffer is already escaped.
      */
-    private Queue<StringBuilder> bufferStack = Collections.asLifoQueue(new LinkedList<>());
+    private final Queue<StringBuilder> bufferStack = Collections.asLifoQueue(new LinkedList<>());
 
     /** author. */
     private Collection<String> authors;
@@ -410,7 +410,7 @@ public class MarkdownSink extends AbstractTextSink implements MarkdownMarkup {
     public void title_() {
         String buffer = consumeBuffer();
         if (buffer != null && !buffer.isEmpty()) {
-            this.title = buffer.toString();
+            this.title = buffer;
         }
     }
 
@@ -426,7 +426,7 @@ public class MarkdownSink extends AbstractTextSink implements MarkdownMarkup {
     public void date_() {
         String buffer = consumeBuffer();
         if (buffer != null && !buffer.isEmpty()) {
-            date = buffer.toString();
+            date = buffer;
         }
     }
 

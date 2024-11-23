@@ -23,7 +23,7 @@ import com.vladsch.flexmark.ext.yaml.front.matter.YamlFrontMatterBlock;
 
 public class YamlFrontMatterVisitor extends AbstractYamlFrontMatterVisitor {
 
-    int endOffset = 0;
+    int endOffset;
 
     @Override
     public void visit(YamlFrontMatterBlock node) {
